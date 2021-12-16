@@ -4,15 +4,8 @@ from .models import Category, Product
 
 # Create your views here.
 
-# This will allow categories to be accessible to every views, it need to be added to settings.py as well
-def categories(request):
-    return {
-        'categories': Category.objects.all()
-    }
-
-
-def all_products(request):
-    products = Product.objects.all()
+def product_all(request):
+    products = Product.products.all()
     return render(request, 'store/home.html', {
         'products': products,
     })
@@ -20,7 +13,7 @@ def all_products(request):
 
 def product_detail(request, slug):
     product = get_object_or_404(Product, slug=slug, in_stock=True)
-    return render(request, 'store/products/detail.html', {
+    return render(request, 'store/products/single.html', {
         'product': product,
     })
 
