@@ -57,7 +57,7 @@
         {% endfor %}
         <div class="col-12 text-end">
             <div class="h6 fw-bold">
-                Sub Total: $<span id="subtotal">{{ basket.get_total_price }}</span>
+                Sub Total: $<div id="subtotal" class="d-inline-flex">{{ basket.get_total_price }}</div>
             </div>
         </div>
     </div>
@@ -78,6 +78,8 @@
           },
           success: function (json) {
             $('.product-item[data-index="'+ prodid +'"]').remove();
+            document.getElementById("basket-qty").innerHTML = json.qty
+            document.getElementById("subtotal").innerHTML = json.subtotal
           },
           error: function (xhr, errmsg, err) {}
         });
