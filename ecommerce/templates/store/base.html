@@ -45,7 +45,7 @@
                         <ul class="dropdown-menu rounded-0 border-0" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="{% url 'store:product_all' %}">All</a></li>
                             {% for c in categories %}
-                            <li {% if category.slug == c.slug %}class="selected" {% endif %}>
+                            <li {% if category.slug == c.slug %} class="selected" {% endif %}>
                                 <a class="dropdown-item" href="{{ c.get_absolute_url }}">{{ c.name|title }}</a>
                             </li>
                             {% endfor %}
@@ -66,7 +66,7 @@
                 </button>
 
                 {% if user.is_authenticated %}
-                <a type="button" role="button" href=""
+                <a type="button" role="button" href="{% url 'account:logout' %}"
                    class="btn btn-outline-secondary border-0 basket-btn">
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
@@ -107,25 +107,25 @@
                 </a>
 
                 <a type="button" role="button" href="{% url 'basket:basket_summary' %}"
-                class="btn btn-outline-secondary border-0 basket-btn">
+                   class="btn btn-outline-secondary border-0 basket-btn">
 
-                {% with total_qty=basket|length %}
-                <div id="basket-qty" class="basket-qty">
-                    {% if total_qty > 0 %}
-                    {{ total_qty }}
-                    {% else %}
-                    0
-                    {% endif %}
-                </div>
-                {% endwith %}
-                <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
-                         class="bi bi-cart3" viewBox="0 0 16 16">
-                        <path
-                                d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-                    </svg>
-                </div>
-                <span class="fs15 fw500">Basket</span>
+                    {% with total_qty=basket|length %}
+                    <div id="basket-qty" class="basket-qty">
+                        {% if total_qty > 0 %}
+                        {{ total_qty }}
+                        {% else %}
+                        0
+                        {% endif %}
+                    </div>
+                    {% endwith %}
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                             class="bi bi-cart3" viewBox="0 0 16 16">
+                            <path
+                                    d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                        </svg>
+                    </div>
+                    <span class="fs15 fw500">Basket</span>
                 </a>
             </div>
             <div class="d-md-none d-lg-none d-xl-none">
