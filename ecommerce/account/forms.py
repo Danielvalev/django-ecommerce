@@ -52,3 +52,31 @@ class RegistrationForm(forms.ModelForm):
             {'class': 'form-control mb-3', 'placeholder': 'Password'})
         self.fields['password2'].widget.attrs.update(
             {'class': 'form-control', 'placeholder': 'Repeat Password'})
+
+
+class UserEditForm(forms.ModelForm):
+    email = forms.EmailField(
+        label='Account email (can not be changed)', max_length=200, widget=forms.TextInput(
+            attrs={'class': 'form-control mb-3', 'placeholder': 'email', 'id': 'form-email', 'readonly': 'readonly'}))
+
+    user_name = forms.CharField(
+        label='Username (can not be changed)', min_length=4, max_length=50, widget=forms.TextInput(
+            attrs={'class': 'form-control mb-3', 'placeholder': 'Username', 'id': 'form-user_name',
+                   'readonly': 'readonly'}))
+
+    first_name = forms.CharField(
+        label='First name', min_length=4, max_length=50, widget=forms.TextInput(
+            attrs={'class': 'form-control mb-3', 'placeholder': 'Firstname', 'id': 'form-firstname'}))
+
+    about = forms.CharField(
+        label='About', min_length=4, max_length=150, widget=forms.Textarea(
+            attrs={'class': 'form-control mb-3', 'placeholder': 'About', 'id': 'form-about'}))
+
+    class Meta:
+        model = UserBase
+        fields = ('email', 'user_name', 'first_name', 'about')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['user_name'].required = True
+        self.fields['email'].required = True
