@@ -9,6 +9,7 @@ from .models import UserBase
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
+from orders.views import user_orders
 
 
 # Create your views here.
@@ -70,8 +71,8 @@ def edit_details(request):
         user_form = UserEditForm(instance=request.user)
 
     return render(request, 'account/user/edit_details.html', {
-                      'user_form': user_form
-                  })
+        'user_form': user_form
+    })
 
 
 @login_required
@@ -85,6 +86,7 @@ def delete_user(request):
 
 @login_required
 def dashboard(request):
+    orders = user_orders(request)
     return render(request, 'account/user/dashboard.html', {
-
+        'orders': orders,
     })
