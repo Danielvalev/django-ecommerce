@@ -105,6 +105,10 @@ celerybeat.pid
 # Static images
 images/
 
+# Stripe file
+stripe
+.DS_Store
+
 # Environments
 .env
 .venv
